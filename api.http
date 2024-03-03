@@ -1,0 +1,26 @@
+### endpoint to save an ingredient
+POST http://localhost:8080/restaurante/ingredientes/guardar
+Content-Type: application/json
+
+{
+  "codigo": "0001",
+  "descripcion": "tomate"
+}
+
+
+### endpoint to get all the ingredients
+GET http://localhost:8080/restaurante/ingredientes
+
+### endpoint to get all food
+GET http://localhost:8080/restaurante/comidas
+
+### endpoint to save a food
+POST http://localhost:8080/restaurante/comidas/guardar
+Content-Type: application/json
+
+{
+  "nombre": "pizza",
+  "precio": 1.4,
+  "ingredientes": []
+}
+
