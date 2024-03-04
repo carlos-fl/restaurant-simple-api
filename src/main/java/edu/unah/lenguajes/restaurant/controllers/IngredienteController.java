@@ -25,12 +25,12 @@ public class IngredienteController {
       return ingredientes;
   }
 
-  @SuppressWarnings({ "rawtypes", "unlikely-arg-type" })
+  @SuppressWarnings({ "rawtypes" })
   @PostMapping("/ingredientes/agregar")
   public ResponseEntity agregarIngrediente(@RequestBody Ingrediente ingrediente) {
     for (Ingrediente ing : ingredientes) {
-      if (ing.getClass().equals(ingrediente.getCodigo()))
-        return new ResponseEntity<>("Codigo ya existe", HttpStatus.OK);
+      if (ing.getCodigo().equals(ingrediente.getCodigo()))
+        return new ResponseEntity<>("Codigo ya existe", HttpStatus.BAD_REQUEST);
     }
     ingredientes.add(ingrediente);
     return new ResponseEntity<>("ingrediente guardado", HttpStatus.OK);
