@@ -1,7 +1,6 @@
 package edu.unah.lenguajes.restaurant.dto;
 
-import java.util.Set;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +16,6 @@ public class Comida {
   
   private String nombre;
   private float precio;
-  private Set<Ingrediente> ingredientes = new HashSet<>();
+  private ArrayList<Ingrediente> ingredientes = new ArrayList<>();
 
 }

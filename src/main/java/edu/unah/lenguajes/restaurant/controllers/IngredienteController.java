@@ -1,7 +1,6 @@
 package edu.unah.lenguajes.restaurant.controllers;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/restaurante")
 public class IngredienteController {
-  static Set<Ingrediente> ingredientes = new HashSet<>();
-
+  static ArrayList<Ingrediente> ingredientes = new ArrayList<>();
 
   @GetMapping("/ingredientes")
-  public Set<Ingrediente> showIngredientes() {
+  public ArrayList<Ingrediente> showIngredientes() {
       return ingredientes;
   }
 
-  @SuppressWarnings("rawtypes")
+  @SuppressWarnings({ "rawtypes", "unlikely-arg-type" })
   @PostMapping("/ingredientes/agregar")
   public ResponseEntity agregarIngrediente(@RequestBody Ingrediente ingrediente) {
     for (Ingrediente ing : ingredientes) {
@@ -37,6 +35,5 @@ public class IngredienteController {
     ingredientes.add(ingrediente);
     return new ResponseEntity<>("ingrediente guardado", HttpStatus.OK);
   }
-  
   
 }

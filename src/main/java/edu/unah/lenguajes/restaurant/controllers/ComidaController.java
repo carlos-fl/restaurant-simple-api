@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Iterator;
+import java.util.ArrayList;
 
 import edu.unah.lenguajes.restaurant.dto.Comida;
 import edu.unah.lenguajes.restaurant.dto.Ingrediente;
@@ -21,26 +19,24 @@ import edu.unah.lenguajes.restaurant.dto.Ingrediente;
 @RequestMapping("/restaurante")
 public class ComidaController {
 
-  Set<Comida> comidas = new HashSet<>();
-  Set<Ingrediente> ingredientes = IngredienteController.ingredientes;
+  private ArrayList<Comida> comidas = new ArrayList<>();
+  private ArrayList<Ingrediente> ingredientes = IngredienteController.ingredientes;
   
 
   @GetMapping("/comidas")
-  public Set<Comida> showComidas() {
+  public ArrayList<Comida> showComidas() {
     return comidas;
   }
 
   @SuppressWarnings("rawtypes")
   @PostMapping("/comidas/agregar")
   public ResponseEntity addComida(@RequestBody Comida nvComida) {
-    Iterator<Ingrediente> ingredientesEnComida = nvComida.getIngredientes().iterator();
-    while (ingredientesEnComida.hasNext()) {
-      if (!ingredientes.contains(ingredientesEnComida.next()))
-        return new ResponseEntity<>("ingrediente " + ingredientesEnComida.next() + " no encontrado", HttpStatus.BAD_REQUEST);
+    ArrayList<Ingrediente> ingredientesEnComida = nvComida.getIngredientes();
+    if (!ingredientes.containsAll(ingredientesEnComida)) {
+      return new ResponseEntity<>("ingredientes " + ingredientesEnComida + " no encontrado en los ingredientes " + ingredientes, HttpStatus.BAD_REQUEST);
     }
     this.comidas.add(nvComida);
     return new ResponseEntity<>("comida guardada", HttpStatus.OK);
   }
-  
 
 }

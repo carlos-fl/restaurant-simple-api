@@ -1,5 +1,5 @@
 ### endpoint to save an ingredient
-POST http://localhost:8080/restaurante/ingredientes/guardar
+POST http://localhost:8080/restaurante/ingredientes/agregar
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ GET http://localhost:8080/restaurante/ingredientes
 GET http://localhost:8080/restaurante/comidas
 
 ### endpoint to save a food
-POST http://localhost:8080/restaurante/comidas/guardar
+POST http://localhost:8080/restaurante/comidas/agregar
 Content-Type: application/json
 
 {
